@@ -1,0 +1,83 @@
+<div class="row mt-5 col-6">
+    <div class="col-8">
+        <h2 *ngIf="isNeW">Agregando Usuario</h2>
+        <h2 *ngIf="!isNeW">Editando a: {{ nombreUsuario }} </h2>
+    </div>
+    <div class="col-4 text-right">
+        <button routerLink="/" class="btn btn-danger">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Regresar
+        </button>
+    </div>
+</div>
+
+
+<form autocomplete="off" (ngSubmit)="guardar()" [formGroup]="forma" class="col-8 text-center">
+
+    <div class="form-group row mb-2" *ngIf="!isNeW">
+        <label class="col-2 form-label">
+          ID:
+      </label>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Nombres" formControlName="_id" disabled>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-2 form-label">
+            Nombres:
+        </label>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Nombres" formControlName="nombres" required [class.is-invalid]="validacion('nombres')">
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-2 form-label">
+            Apellidos: 
+        </label>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Apellidos" formControlName="apellidos" required [class.is-invalid]="validacion('apellidos')">
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-2 form-label">
+            Telefono:
+        </label>
+        <div class="col">
+            <input type="tel" class="form-control" placeholder="Telefono" formControlName="telefono" required [class.is-invalid]="validacion('telefono')">
+        </div>
+
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-2 form-label">
+            Correo
+        </label>
+        <div class="col">
+            <input type="email" class="form-control" placeholder="correo" formControlName="correo" required [class.is-invalid]="validacion('correo')">
+            <small *ngIf="validacion('correo')" class="form-text text-danger">Ingrese un Email Correcto</small>
+        </div>
+
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-2 form-label">
+            Direccion:
+        </label>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="direccion" formControlName="direccion" required [class.is-invalid]="validacion('direccion')">
+        </div>
+
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-2 form-label">&nbsp;</label>
+        <button type="submit" class="btn btn-block btn-primary">
+            Guardar
+        </button>
+    </div>
+
+
+</form>

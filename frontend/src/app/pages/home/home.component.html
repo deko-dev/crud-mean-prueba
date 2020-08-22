@@ -1,0 +1,58 @@
+<div class="row mt-5">
+    <div class="col-6">
+        <h2>Prueba Tecnica</h2>
+    </div>
+    <div class="col-4 text-right">
+        <button routerLink="/usuario" class="btn btn-outline-primary">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+
+<table class="table mb-5" *ngIf="!cargando && usuarios.length > 0">
+    <thead>
+        <tr class="table-dark">
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Direccion</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let usuario of usuarios, let i = index">
+            <td>{{ usuario._id }}</td>
+            <td>{{ usuario.nombres }}</td>
+            <td>{{ usuario.apellidos }}</td>
+            <td>{{ usuario.telefono }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>{{ usuario.direccion }}</td>
+            <td>
+                <button [routerLink]="['/usuario', usuario._id]" class="btn btn-primary mr-2">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button (click)="borrarUsuario(usuario._id, i)" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="alert alert-primary text-center" role="alert" *ngIf="cargando">
+    <h4>Cargando</h4>
+    <p class="mb-0">
+        <i class="fas fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+</div>
+
+<div class="alert alert-warning text-center" role="alert" *ngIf="!cargando && usuarios.length === 0">
+    <h4>No hay Usuarios</h4>
+    <p class="mb-0">
+        <i class="fas fa-exclamation"></i>
+    </p>
+</div>
